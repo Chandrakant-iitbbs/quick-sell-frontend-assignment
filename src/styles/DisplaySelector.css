@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.dropdown-wrapper {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  margin: 20px 0;
+  margin-left: calc(min(7%,40px));
+}
+
+.display-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.display-button:hover {
+  background: #f8f9fa;
+}
+
+.display-button.active {
+  border-color: #d0d5dd;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.display-icon {
+  width: 16px;
+  height: 16px;
+  color: #666;
+}
+
+.down-icon {
+  width: 16px;
+  height: 16px;
+  color: #666;
+  margin-left: auto;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 280px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -2px rgba(16, 24, 40, 0.05);
+  padding: 16px;
+  z-index: 1000;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.menu-item label {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.select-container {
+  position: relative;
+  width: 160px;
+}
+
+.select-container::after {
+content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #666;
+  pointer-events: none;
+}
+
+select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  appearance: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+select:hover {
+  border-color: #d0d5dd;
+}
+
+select:focus {
+  outline: none;
+  border-color: #d0d5dd;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.display-button,
+.menu-item label {
+  user-select: none;
+}
+
+.menu-item:hover select {
+  border-color: #d0d5dd;
+}
