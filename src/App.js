@@ -1,8 +1,9 @@
+import KanbanCard from "./components/KanbanCard";
 
 function App() {
   return (
     <div>
-      Kanban board application with React
+      <KanbanCard />
     </div>
   );
 }
