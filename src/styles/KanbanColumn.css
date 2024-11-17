@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.kanban-column {
+  width: 400px;
+  font-family: 'Inter', sans-serif;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.priority-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.indicator-bar {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  margin: 0 2px;
+}
+
+.priority-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0 4px;
+}
+
+.task-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-button, .more-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.add-button {
+  font-size: 20px;
+  color: #666;
+}
+
+.more-button {
+  display: flex;
+  gap: 2px;
+  padding: 8px;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

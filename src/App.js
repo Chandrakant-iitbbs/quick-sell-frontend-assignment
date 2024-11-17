@@ -1,9 +1,10 @@
-import KanbanCard from "./components/KanbanCard";
+
+import KanbanColumn from "./components/KanbanColumn";
 
 function App() {
   return (
     <div>
-      <KanbanCard />
+      <KanbanColumn />
     </div>
   );
 }

@@ -1,17 +1,7 @@
-import React from 'react';
 import '../styles/KanbanCard.css';
-import done from '../assets/Done.svg';
-import dots from '../assets/3 dot menu.svg';
 
-const KanbanCard = () => {
-    const data = {
-        cardId: 'CAM-3',
-        dpName: "CK",
-        cardTitle: 'Optimize Database Queries for Performance',
-        featureRequest: "Feature Request",
-        done: done,
-        statusBackGround: "yellow"
-    };
+const KanbanCard = (props) => {
+    const data = props.task;
     const backgroColor = () => {
         let a = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
@@ -40,7 +30,7 @@ const KanbanCard = () => {
 
                 <div className="footer-section">
                     <div className="menu-dots">
-                        <img src={dots} alt="three dots" />
+                        <img src={data.dots} alt="three dots" />
                     </div>
                     <div className="feature-tag">
                         <div className="tag-circle"></div>
