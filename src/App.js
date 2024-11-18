@@ -1,13 +1,8 @@
-
-import DisplaySelector from "./components/DisplaySelector";
-import KanbanBoard from "./components/KanbanBoard";
+import Main from "./components/Main";
 
 function App() {
   return (
-    <div>
-      <DisplaySelector/>
-      <KanbanBoard/>
-    </div>
+    <Main />
   );
 }
 

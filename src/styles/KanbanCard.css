@@ -2,12 +2,12 @@
 
 .card {
   width: 100%;
-  max-width: 600px;
   background: white;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   font-family: 'Inter', sans-serif;
+  text-wrap: wrap;
 }
 
 .card-content {
@@ -24,7 +24,7 @@
 
 .cam-text {
   color: #666;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   color: #333;
   margin: 0;
@@ -111,6 +111,6 @@
 
 .tag-text {
   color: #666;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
 }

@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import '../styles/DisplaySelector.css';
 import display from '../assets/Display.svg';
 import down from '../assets/down.svg';
 
-const DisplaySelector = () => {
+const DisplaySelector = (props) => {
+  const { grouping, setGrouping, ordering, setOrdering } = props;
   const [isMainOpen, setIsMainOpen] = useState(false);
-  const [grouping, setGrouping] = useState('Status');
-  const [ordering, setOrdering] = useState('Priority');
   const dropdownRef = useRef(null);
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {

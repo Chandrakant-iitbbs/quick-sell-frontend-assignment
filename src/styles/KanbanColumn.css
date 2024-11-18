@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 .kanban-column {
-  width: 400px;
+  min-width: 330px;
+  width: 16%;
   font-family: 'Inter', sans-serif;
   background: #f8f9fa;
   border-radius: 8px;
