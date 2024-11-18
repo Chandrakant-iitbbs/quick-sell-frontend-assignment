@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import DisplaySelector from './DisplaySelector';
 import KanbanBoard from './KanbanBoard';
 import { useFetchData } from '../hooks/useFetchData';
@@ -30,7 +30,7 @@ const Main = () => {
     return labels[priority];
   };
 
-  const sortTickets = (ticketsToSort) => {
+  const sortTickets = useCallback((ticketsToSort) => {
     return [...ticketsToSort].sort((a, b) => {
       if (sortBy === 'Priority') {
         const ticketA = result?.tickets?.find(t => t.id === a.cardId);
@@ -39,26 +39,27 @@ const Main = () => {
       }
       return (a.cardTitle ?? '').localeCompare(b.cardTitle ?? '');
     });
-  };
+  }, [result, sortBy]);
 
-  const imagefromStatus = {
-    "Todo": todo,
-    "Done": done,
-    "In progress": inProgress,
-    "Backlog": Backlog,
-    "Cancelled": Cancelled
-  };
+  const imagefromStatus = useMemo(() => (
+    {
+      "Todo": todo,
+      "Done": done,
+      "In progress": inProgress,
+      "Backlog": Backlog,
+      "Cancelled": Cancelled
+    }
+  ), []);
 
-  const imagefromPriority = {
+  const imagefromPriority = useMemo(() => ({
     0: noPriority,
     1: lowPriority,
     2: mediumPriority,
     3: highPriority,
     4: urgentPriority
-  }
+  }), []);
 
-
-  const transformTicket = (ticket) => ({
+  const transformTicket = useCallback((ticket) => ({
     cardId: ticket.id,
     cardTitle: ticket.title,
     featureRequest: ticket.tag[0],
@@ -68,10 +69,10 @@ const Main = () => {
     dpName: result.users.find(user => user.id === ticket.userId)?.name?.substr(0, 2).toUpperCase() ?? 'Unknown',
     dots: imagefromPriority[ticket.priority],
 
-  });
+  }), [groupBy, result,imagefromStatus, imagefromPriority]);
 
 
-  const groupByStatus = () => {
+  const groupByStatus = useCallback(() => {
     const grouped = [];
     let statuses = ["Todo", "In progress", "Done", "Backlog", "Cancelled"];
     statuses.forEach(status => {
@@ -84,9 +85,9 @@ const Main = () => {
       });
     });
     return grouped;
-  };
+  }, [result, transformTicket, sortTickets,imagefromStatus]);
 
-  const groupByPriority = () => {
+  const groupByPriority = useCallback(() => {
     const grouped = [];
     let priorities = [4, 3, 2, 1, 0];
     priorities.forEach(priority => {
@@ -99,9 +100,9 @@ const Main = () => {
       });
     });
     return grouped;
-  }
+  }, [result, transformTicket, sortTickets, imagefromPriority]);
 
-  const groupByUser = () => {
+  const groupByUser = useCallback(() => {
     const grouped = [];
     result.users.forEach(user => {
       const tasks = result?.tickets.filter(ticket => ticket.userId === user.id).map(transformTicket);
@@ -113,24 +114,25 @@ const Main = () => {
       });
     });
     return grouped;
-  };
+  }, [result, transformTicket, sortTickets]);
+
+
+
+
 
   useEffect(() => {
     if (result && result.tickets) {
       if (groupBy === "Status") {
-        const grouped = groupByStatus();
-        setGroupedData(grouped);
+        setGroupedData(groupByStatus());
       }
       else if (groupBy === "User") {
-        const grouped = groupByUser();
-        setGroupedData(grouped);
+        setGroupedData(groupByUser());
       }
       else {
-        const grouped = groupByPriority();
-        setGroupedData(grouped);
+        setGroupedData(groupByPriority());
       }
     }
-  }, [result, groupBy, sortBy]);
+  }, [result, groupBy, groupByStatus, groupByUser, groupByPriority]);
 
 
   if (loading) return <p>Loading...</p>;
