@@ -15,13 +15,18 @@ import urgentPriority from "../assets/SVG - Urgent Priority colour.svg";
 
 const Main = () => {
   const { result, loading, error } = useFetchData();
-  const [groupBy, setGroupBy] = useState("Status");
-  const [sortBy, setSortBy] = useState("Priority");
+  const [groupBy, setGroupBy] = useState(localStorage.getItem("group") || "Status");
+  const [sortBy, setSortBy] = useState(localStorage.getItem("order") || "Priority");
   const [groupedData, setGroupedData] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("group", groupBy);
+    localStorage.setItem("order", sortBy);
+  }, [groupBy, sortBy]);
 
 
   const getPriorityLabel = (priority) => {
-    const labels = ['Lowest', 'Low', 'Medium', 'High', 'Highest'];
+    const labels = ['No priority', 'Low', 'Medium', 'High', 'Urgent'];
     return labels[priority];
   };
 
@@ -135,7 +140,7 @@ const Main = () => {
   return (
     <div>
       <DisplaySelector
-        groupBy={groupBy}
+        grouping={groupBy}
         setGrouping={setGroupBy}
         ordering={sortBy}
         setOrdering={setSortBy}
